@@ -11,7 +11,7 @@ public class Cuadrado extends Thread {
 	private boolean clicky;
 	private int dir;
 	
-	public Cuadrado(PApplet app,int posX,int posY,int tamX,int tamY,int color){
+	public Cuadrado(PApplet app,int posX,int posY,int color){
 		this.app=app;
 		this.color=color;
 		this.posX=posX;
@@ -48,7 +48,7 @@ public class Cuadrado extends Thread {
 	
 	public void pintarCuadricula() {
 		app.fill(this.color);
-		app.rect(this.posX,this.posY,this.tamX,this.tamY);
+		app.rect(this.posX,this.posY,20,20);
 		
 	}
 	

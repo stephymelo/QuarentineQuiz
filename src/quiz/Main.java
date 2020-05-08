@@ -10,6 +10,7 @@ public class Main extends PApplet {
 	private int row,col;
 	private int r,g,b;
 
+
 	private boolean tocarMatriz,vovilsteTocar;
 	public static void main(String[] args) {
 		PApplet.main("quiz.Main");
@@ -24,13 +25,15 @@ public class Main extends PApplet {
 
 	}
 	public void setup() {
+		
 
 		row = 10;
 		col = 6;
 		tocarMatriz=false;
 		vovilsteTocar=false;
+		
+		matriz= new Cuadrado[row][col]; 
 
-		matriz = new Cuadrado[row][col];
 
 
 
@@ -38,9 +41,9 @@ public class Main extends PApplet {
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < col; j++) {
 				if((i%2)==0) {
-					matriz[i][j] = new Cuadrado(this,100+(20)* i, 80+(40) * j, 20, 20, color(r=0,g=0,b=0));
+					matriz[i][j] = new Cuadrado(this,100+(20)* i, 80+(40) * j, color(r=0,g=0,b=0));
 				}else {
-					matriz[i][j] = new Cuadrado(this,100+(20) * i,100+(40) * j, 20, 20, color(r=255,g=255,b=255));
+					matriz[i][j] = new Cuadrado(this,100+(20) * i,100+(40) * j,color(r=255,g=255,b=255));
 				}
 
 
@@ -58,12 +61,15 @@ public class Main extends PApplet {
 			for (int j = 0; j < col; j++) {
 
 				matriz[i][j].pintarCuadricula();
+			
+				
 
 			}
 
 		}
-
+		if(tocarMatriz==true) {
 		mov();
+	}
 	}
 
 
@@ -73,21 +79,19 @@ public class Main extends PApplet {
 
 	public void mov() {
 		
-		if(tocarMatriz=true) {
+		
 			for (int i = 0; i < row; i++) {
 				for (int j = 0; j < col; j++) {
 					
 					if((i%2)==0) {
 					 matriz[i][j].movimiento();
 					 vovilsteTocar=true;
-					
-					
-					matriz[i][j].setClicky(true);
+				
 					
 				}
 			}
 		}
-	}
+	
 	}
 
 
@@ -107,36 +111,51 @@ public class Main extends PApplet {
 	}
 
 	public void mouseClicked() {
-if(tocarMatriz=false) {
-		tocarMatriz=true;
-		return;
+		try {
+			
+			matrix();
+			
+		}catch(Exceptionn e) {
+			System.out.print(e.getMessage());
+		}
 
-}
+	
+//
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < col; j++) {
-				if(dist(mouseX,mouseY,matriz[i][j].getPosX()+20,matriz[i][j].getPosY())<100&&(i%2)==0) {
-					matriz[i][j].setColor(color(r=255,0,0));
-					tocarMatriz=false;
+				
+
+			
+				if(dist(mouseX,mouseY,matriz[i][j].getPosX()+20,matriz[i][j].getPosY())<100) {
+				
+					matriz[i][j].setColor(color(255,0,0));
+					tocarMatriz=true;
 					matriz[i][j].setClicky(false);
+					System.out.println("entro"); 
 					
 					return;
 				}
 
-
-
+				
+				//con este deberia para pero no// 
+				
+				if(dist(mouseX,mouseY,matriz[i][j].getPosX()+20,matriz[i][j].getPosY())<100&&(i%2)==0) {
+					tocarMatriz=false;
+					return;
+				}
 
 			}
 		}
-
-
-			
-					for (int i = 0; i < row; i++) {
-						for (int j = 0; j < col; j++) {
-							if(dist(mouseX,mouseY,matriz[i][j].getPosX()+20,matriz[i][j].getPosY())<100&&r==255) {
-								vovilsteTocar=true;
-							}
-						}
-					}
+		
+		for (int i = 0; i < row; i++) {
+			for (int j = 0; j < col; j++) {
+				if(dist(mouseX,mouseY,matriz[i][j].getPosX()+20,matriz[i][j].getPosY())<100&&matriz[i][j].getColor()==color(255,0,0)) {
+					vovilsteTocar=true;
+				}
+			}
+		}
+		
+					
 			
 
 
