@@ -130,17 +130,18 @@ public class Main extends PApplet {
 				
 					matriz[i][j].setColor(color(255,0,0));
 					tocarMatriz=true;
-					matriz[i][j].setClicky(false);
+					matriz[i][j].setClicky(true);
 					System.out.println("entro"); 
 					
 					return;
 				}
 
 				
-				//con este deberia para pero no// 
+				//con este deberia parar pero no// 
 				
-				if(dist(mouseX,mouseY,matriz[i][j].getPosX()+20,matriz[i][j].getPosY())<100&&(i%2)==0) {
+				if(dist(mouseX,mouseY,matriz[i][j].getPosX(),matriz[i][j].getPosY())<100&&(i%2)==0) {
 					tocarMatriz=false;
+					matriz[i][j].setClicky(false);
 					return;
 				}
 
@@ -149,7 +150,7 @@ public class Main extends PApplet {
 		
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < col; j++) {
-				if(dist(mouseX,mouseY,matriz[i][j].getPosX()+20,matriz[i][j].getPosY())<100&&matriz[i][j].getColor()==color(255,0,0)) {
+				if(dist(mouseX,mouseY,matriz[i][j].getPosX(),matriz[i][j].getPosY())<100&&matriz[i][j].getColor()==color(255,0,0)) {
 					vovilsteTocar=true;
 				}
 			}
